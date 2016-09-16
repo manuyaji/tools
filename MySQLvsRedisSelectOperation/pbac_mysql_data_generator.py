@@ -58,7 +58,7 @@ def printHelp():
 			+'("probable values" as explained in "-v 3" explanation).'
 	print 'Default value is 1000.'
 	print ''
-	print 'Because of the option "-o dummy.sql", the mysql script file generated would be "dummy.sql".' \
+	print 'Because of the option "-o dummy.sql", the mysql script file generated would be "dummy.sql".' 
 	print 'Default output file is "dummy.sql".'
 	print ''
 	print 'Because of the option "-p 1007", the rows that shall be generated will have their id (PRIMARY KEY) starting from 1007' \
