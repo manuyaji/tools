@@ -108,7 +108,25 @@ def sqlTextAtTheEnd(fw):
 def dropTableDummy(fw):
 	fw.write("DROP TABLE IF EXISTS `dummy`;\n");
 
-def createTableDummy(fw, numLists, strLists):
+def addCompositeIndex(fw, numLists, strLists):
+	fw.write(",\n"+"  INDEX dummy_index (");
+	isCommaNeeded=False;
+	for i in range(1,len(numLists)+1):
+		if isCommaNeeded:
+			fw.write(", ");
+		fw.write("`num"+str(i)+"`");
+		if not isCommaNeeded:
+			isCommaNeeded=True;
+	for j in range(1,len(strLists)):
+		if isCommaNeeded:
+			fw.write(", ");
+		fw.write("`str"+str(j)+"`");
+		if not isCommaNeeded:
+			isCommaNeeded=True;
+	fw.write(")");
+
+
+def createTableDummy(fw, numLists, strLists, isCompositeIndex=True):
 	fw.write("/*!40101 SET @saved_cs_client     = @@character_set_client */;\n" \
 		+"/*!40101 SET character_set_client = utf8 */;\n");
 	fw.write("CREATE TABLE `dummy` (\n" \
@@ -123,10 +141,11 @@ def createTableDummy(fw, numLists, strLists):
 		for j in range(1, len(strLists)):
 			fw.write("  `str"+str(j)+"` varchar(50) DEFAULT NULL,\n");
 		fw.write("  `str"+str(len(strLists))+"` varchar(50) DEFAULT NULL")
-	fw.write(",\n"+"  PRIMARY KEY (`id`)\n" \
-		+") ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;\n" \
+	fw.write(",\n"+"  PRIMARY KEY (`id`)")
+	if isCompositeIndex:
+		addCompositeIndex(fw, numLists, strLists);
+	fw.write("\n) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;\n" \
 		+"/*!40101 SET character_set_client = @saved_cs_client */;\n");
-
 
 def putDataIntoTableDummy(fw, numLists, strLists, rows, primaryId):
 	fw.write("LOCK TABLES `dummy` WRITE;\n");
