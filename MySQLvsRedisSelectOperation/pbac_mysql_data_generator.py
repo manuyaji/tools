@@ -34,8 +34,10 @@ def printHelp():
 	print '+-------+-------------+------+-----+---------+----------------+'
 	print ''
 	print 'There are 4 integer columns (not considering "id") because of the option "-n 4".'
+	print 'Default value is 4.'
 	print ''
 	print 'There are 7 string (varchar(50)) columns because of the option "-s 7".'
+	print 'Default value is 7.'
 	print ''
 	print 'Because of the option "-v 3", it would be assumed that each column (except id) has 3 probable values. That is,'
 	print '	Value of column "num1" in any row will be one of [1, 2, 3].'
@@ -49,25 +51,31 @@ def printHelp():
 	print '	Value of column "str5" in any row will be one of ["str5_1", "str5_2", "str5_3"]'
 	print '	Value of column "str6" in any row will be one of ["str6_1", "str6_2", "str6_3"]'
 	print '	Value of column "str6" in any row will be one of ["str7_1", "str7_2", "str7_3"]'
+	print 'Default value is 3.'
 	print ''
 	print 'Because of the option "-r 1000", there would be 1000 rows inserted into the table "dummy". ' \
 			+'Each column in each row will have a randomly generated value among its "probable values"' \
 			+'("probable values" as explained in "-v 3" explanation).'
+	print 'Default value is 1000.'
 	print ''
-	print 'Because of the option "-o dummy.sql", the mysql script file generated would be "dummy.sql".'
+	print 'Because of the option "-o dummy.sql", the mysql script file generated would be "dummy.sql".' \
+	print 'Default output file is "dummy.sql".'
 	print ''
 	print 'Because of the option "-p 1007", the rows that shall be generated will have their id (PRIMARY KEY) starting from 1007' \
 			+' and shall auto-increment from 1007 onwards till the total number of rows. In our example, the id (PRIMARY KEY) ' \
 			+'range of the rows generated shall be 1007 to 2006 (1000 rows - because of the option "-r 1000").'
+	print 'Default value is 1.'
 	print ''
 	print 'Because of the option \'-j \"/path/to/application.properties\"\', this script shall add/replace the following lines in the file ' \
 			+'/path/to/application.properties -- '
 	print 'hql.permission.query=SELECT distinct D.str7 where D.num1=:num1 and D.num2=:num2 and D.num3=:num3 and D.num3=:num3' \
 			+' and D.str1=:str1 and D.str2=:str2 and D.str3=:str3 and D.str4=:str4 and D.str5=:str5 and D.str6=:str6'
 	print 'Please look at the java project in the repo for more details as to why this application.properties is used.'
+	print 'There is NO default value. The operation explained above will simple not be executed if "-j" option is not given.'
 	print ''
 	print 'Because of the option \'-x \"True\"\', the mysql script produced will drop the table dummy. If the option is "False", ' \
 			'the table shall not be dropped'
+	print 'Default value is "True".'
 
 
 
