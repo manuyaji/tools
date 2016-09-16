@@ -10,6 +10,7 @@ import org.springframework.context.ApplicationContext;
 
 import com.ezdi.poc.beans.Dummy;
 import com.ezdi.poc.util.MainRunner;
+import com.ezdi.poc.util.NumUtils;
 
 @SpringBootApplication
 public class MysqlToRedisPoCApplication { 
@@ -55,6 +56,9 @@ public class MysqlToRedisPoCApplication {
         for(int i=0; i<testCases; i++){
         	System.out.println("mysqlTime: "+mysqlTimes[i]+"\t redisTime: "+redisTimes[i]);
         }
+        
+        System.out.println("MySQL Average: "+NumUtils.average(mysqlTimes));
+        System.out.println("Redis Average: "+NumUtils.average(redisTimes));
 	}
 
 }
