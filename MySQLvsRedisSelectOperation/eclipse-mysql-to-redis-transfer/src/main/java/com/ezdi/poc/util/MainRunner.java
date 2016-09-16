@@ -92,7 +92,7 @@ public class MainRunner {
 	public long executeQueriesInMySQL(List<Dummy> list){
 		long start = System.currentTimeMillis();
 		for(Dummy each: list){
-			mysqlResultList.add(dummyDao.findPermissionSet(each));
+			mysqlResultList.add(dummyDao.findResultSet(each));
 		}
 		long end = System.currentTimeMillis();
 		return (end - start);

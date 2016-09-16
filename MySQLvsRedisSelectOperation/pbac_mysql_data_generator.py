@@ -237,8 +237,8 @@ def writeApplicationProperties(path, intColumns, strColumns):
 
 intColumns=4;
 strColumns=7;
-distinctVals=50;
-rows=50000;
+distinctVals=3;
+rows=1000;
 sqlFileName="dummy.sql";
 primaryId=1;
 isDropTableDummy=True;

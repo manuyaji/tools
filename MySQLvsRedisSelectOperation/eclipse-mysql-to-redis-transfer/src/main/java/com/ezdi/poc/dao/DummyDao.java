@@ -20,8 +20,8 @@ public class DummyDao {
 	
 	//SAMPLE ::: SELECT distinct D.str3 where D.num1=:num1 and D.num2=:num2 
 	//							and D.num3=:num3 and D.str1=:str1 and D.str2=:str2
-	@Value("${hql.permission.query}")
-	private String HQL_PERMISSION_QUERY;
+	@Value("${hql.result.query}")
+	private String HQL_RESULT_QUERY;
 	
 	
 	//SAMPLE ::: FROM Dummy
@@ -30,14 +30,14 @@ public class DummyDao {
 	
 	
 	public void display(){
-		System.out.println("DUMMYDAO:: permission-query: "+HQL_PERMISSION_QUERY);
+		System.out.println("DUMMYDAO:: permission-query: "+HQL_RESULT_QUERY);
 		System.out.println("DUMMYDAO:: select-all-query: "+HQL_SELECT_ALL_QUERY);
 	}
 	
-	public List<String> findPermissionSet(List<Integer> nums, List<String> strs){
+	public List<String> findResultSet(List<Integer> nums, List<String> strs){
 		
 		Session session = sessionFactory.openSession();
-		Query query = session.createQuery(HQL_PERMISSION_QUERY);
+		Query query = session.createQuery(HQL_RESULT_QUERY);
 		for(int i=0; i<nums.size(); i++){
 			query.setParameter("num"+(i+1), nums.get(i));
 		}
@@ -49,9 +49,9 @@ public class DummyDao {
 		return ret;
 	}
 	
-	public List<String> findPermissionSet(Dummy dummy){
+	public List<String> findResultSet(Dummy dummy){
 		Session session = sessionFactory.openSession();
-		Query query = session.createQuery(HQL_PERMISSION_QUERY).setProperties(dummy);
+		Query query = session.createQuery(HQL_RESULT_QUERY).setProperties(dummy);
 		List<String> ret = query.list();
 		session.close();
 		return ret;

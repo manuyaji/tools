@@ -22,9 +22,9 @@ public class Dummy {
 	@Column(name="num3")
 	private int num3;
 	
-	/*@Column(name="num4")
+	@Column(name="num4")
 	private int num4;
-	*/
+	
 	
 	@Column(name="str1")
 	private String str1;
@@ -35,14 +35,17 @@ public class Dummy {
 	@Column(name="str3")
 	private String str3;
 	
-	/*@Column(name="str5")
+	@Column(name="str4")
+	private String str4;
+
+	@Column(name="str5")
 	private String str5;
 	
 	@Column(name="str6")
 	private String str6;
 	
 	@Column(name="str7")
-	private String str7;*/
+	private String str7;
 
 	public int getId() {
 		return id;
@@ -76,13 +79,13 @@ public class Dummy {
 		this.num3 = num3;
 	}
 
-	/*public int getNum4() {
+	public int getNum4() {
 		return num4;
 	}
 
 	public void setNum4(int num4) {
 		this.num4 = num4;
-	}*/
+	}
 
 	public String getStr1() {
 		return str1;
@@ -107,8 +110,16 @@ public class Dummy {
 	public void setStr3(String str3) {
 		this.str3 = str3;
 	}
+	
+	public String getStr4() {
+		return str4;
+	}
 
-	/*public String getStr5() {
+	public void setStr4(String str4) {
+		this.str4 = str4;
+	}
+
+	public String getStr5() {
 		return str5;
 	}
 
@@ -130,6 +141,6 @@ public class Dummy {
 
 	public void setStr7(String str7) {
 		this.str7 = str7;
-	}*/
+	}
 	
 }
