@@ -1,6 +1,5 @@
 package com.ezdi.poc;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -59,6 +58,15 @@ public class MysqlToRedisPoCApplication {
         
         System.out.println("MySQL Average: "+NumUtils.average(mysqlTimes));
         System.out.println("Redis Average: "+NumUtils.average(redisTimes));
+        
+        System.out.println("==================MYSQL===============");
+        mainRunner.printMysqlResult();
+        System.out.println("==================REDIS===============");
+        mainRunner.printRedisResult();
+	}
+	
+	public static void test(MainRunner mainRunner){
+		while(!mainRunner.executeQuery());
 	}
 
 }

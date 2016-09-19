@@ -73,13 +73,42 @@ public class MainRunner {
 		return list;
 	}
 	
+	public boolean executeQuery(){
+		boolean ret = false;
+		Dummy dummy = createRandomDummy();
+		System.out.println("Query: "+dummy.getNum1()+":"+dummy.getNum2()
+				+":"+dummy.getNum3()+":"+dummy.getNum4()+":"+dummy.getStr1()
+				+":"+dummy.getStr2()+":"+dummy.getStr3()+":"+dummy.getStr4()
+				+":"+dummy.getStr5()+":"+dummy.getStr6());
+		List<String> resultList = dummyDao.findResultSet(dummy);
+		if(!resultList.isEmpty()) {
+			ret = true;
+		}
+		System.out.println("PRINTING MYSQL RESULTS:");
+		for(String each: resultList){
+			System.out.println(each);
+		}
+		
+		String redisQuery = makeRedisKey(dummy);
+		Set<Object> redisResult = redisRepository.getSetMembers(redisQuery);
+		if(!redisResult.isEmpty()){
+			ret = true;
+		}
+		System.out.println("PRINTING REDIS RESULTS");
+		for(Object each: redisResult){
+			System.out.println(each.toString());
+		}
+		return ret;
+	}
+	
+	
+	
 	private Dummy createRandomDummy(){
 		Dummy ret = new Dummy();
 		int val=0;
 		for(int i=1; i<=numCols;i++){
 			val = rnd.nextInt(values)+1;
-			Integer intVal = val;
-			ReflectionUtils.setValue("num"+i, ret, intVal);
+			ReflectionUtils.setValue("num"+i, ret, val);
 		}
 		for(int i=1; i<=strCols-1; i++){
 			val = rnd.nextInt(values)+1;
@@ -144,6 +173,24 @@ public class MainRunner {
 			}
 		}
 		return true;
+	}
+	
+	public void printMysqlResult(){
+		for(int i=0; i<mysqlResultList.size(); i++){
+			List<String> res =  mysqlResultList.get(i);
+			for(String each: res){
+				System.out.println(each);
+			}
+		}
+	}
+
+	public void printRedisResult(){
+		for(int i=0; i<redisResultList.size(); i++){
+			Set<Object> res =  redisResultList.get(i);
+			for(Object each:res){
+				System.out.println((String)each);
+			}
+		}
 	}
 
 	public int getTestCases() {

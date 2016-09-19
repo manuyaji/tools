@@ -59,7 +59,7 @@ public class Dummy {
 		return num1;
 	}
 
-	public void setNum1(int num1) {
+	public void setNum1(Integer num1) {
 		this.num1 = num1;
 	}
 
@@ -67,7 +67,7 @@ public class Dummy {
 		return num2;
 	}
 
-	public void setNum2(int num2) {
+	public void setNum2(Integer num2) {
 		this.num2 = num2;
 	}
 
@@ -75,7 +75,7 @@ public class Dummy {
 		return num3;
 	}
 
-	public void setNum3(int num3) {
+	public void setNum3(Integer num3) {
 		this.num3 = num3;
 	}
 
@@ -83,7 +83,7 @@ public class Dummy {
 		return num4;
 	}
 
-	public void setNum4(int num4) {
+	public void setNum4(Integer num4) {
 		this.num4 = num4;
 	}
 

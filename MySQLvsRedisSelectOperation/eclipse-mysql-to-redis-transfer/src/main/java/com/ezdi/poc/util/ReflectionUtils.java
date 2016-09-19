@@ -3,7 +3,9 @@ package com.ezdi.poc.util;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import javax.persistence.Column;
 
@@ -85,7 +87,12 @@ public class ReflectionUtils {
 	public static void invokeSetter(String fieldName, Object object, Object ...params)throws NoSuchMethodException, 
 			IllegalAccessException, InvocationTargetException{
 		Class clazz = object.getClass();
-		Method methodToInvoke = clazz.getMethod(setterMethodName(fieldName));
+		Class[] paramsClasses = new Class[params.length];
+		int i=0;
+		for(Object each: params){
+			paramsClasses[i++] = each.getClass();
+		}
+		Method methodToInvoke = clazz.getMethod(setterMethodName(fieldName), paramsClasses);
 		methodToInvoke.invoke(object, params);
 	}
 
