@@ -138,13 +138,13 @@ def endLines(fw):
 
 ################ MAIN #####################
 
-dbUser = "root"; 
-dbPwd = "P@ssw0rd@123"; 
+dbUser = "default"; 
+dbPwd = "default"; 
 dbUrl = "localhost"; 
-dbName = "ez_pbac"; 
-dbTable = "ez_cac_encounter_permission_extended"; 
-outputJavaClass = "EncounterPermissionExtended"; 
-package = "com.ezdi"
+dbName = "default"; 
+dbTable = "default"; 
+outputJavaClass = "Default"; 
+package = "default"
 outputDir = "./"; 
 
 try:
