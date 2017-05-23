@@ -6,8 +6,10 @@ import MySQLdb;
 def printHelp():
     print "\nThis script creates a Java POJO Entity class corresponding to a MySQL table."; 
     print "A Java file with member variables with appropriate hibernate (persistence) annotations" \
-        +" as well as getters and setters is created when MySQL connection details" \
-        +" and DB name and table is specified."; 
+        +" as well as getters and setters is created when MySQL connection details," \
+        +" database name and table name are specified."; 
+    print "\nPRE-REQUISITES: Install MySQLdb python connector. You may use the command" \
+        +" \"sudo apt-get install python-mysqldb\".";  
     print "\nThis assumes that table names and column names follow one of the following two naming conventions" \
         +" (or a combination of them):"; 
     print "1. Camel Case."
@@ -16,9 +18,9 @@ def printHelp():
         #+' Also, the first letter of the column name or table name is also lower case.)\n'; 
     print "2. Underscore.";  
     print "\nA sample run of this python file is \n"; 
-    print "\"python mysql_table_to_java_pojo_entity_generator.py -d ~/Desktop/temp/ " \
-        + "-o RulePermission -u root -p P@ssw0rd@123 -l 127.0.0.1 -n ez_pbac " \
-        + "-t ez_profiling_rule_permission -k com.ezdi.pbac.service.ezcac.entities\"\n\n"; 
+    print "\"python mysql_table_to_java_pojo_entity_generator.py -l 127.0.0.1 -u root -p P@ssw0rd@123 " \
+        + "-n ez_pbac -t ez_profiling_rule_permission -o RulePermission -d ~/Desktop/temp/" \
+        + "-k com.ezdi.pbac.service.ezcac.entities\"\n"; 
     print "The input options are explained below."; 
     print "-l : The DB Host to connect to."; 
     print "-u : The DB user to user."; 
