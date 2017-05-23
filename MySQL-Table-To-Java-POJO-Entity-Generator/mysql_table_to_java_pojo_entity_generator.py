@@ -4,7 +4,32 @@ import getopt;
 import MySQLdb; 
 
 def printHelp():
-    print 'Help is still under construction'; 
+    print "\nThis script creates a Java POJO Entity class corresponding to a MySQL table."; 
+    print "A Java file with member variables with appropriate hibernate (persistence) annotations" \
+        +" as well as getters and setters is created when MySQL connection details" \
+        +" and DB name and table is specified."; 
+    print "\nThis assumes that table names and column names follow one of the following two naming conventions" \
+        +" (or a combination of them):"; 
+    print "1. Camel Case."
+        #+'(Capitalization of the first letter of a new word\'s beginning,' \
+        #+' all other letters being lower case.' \
+        #+' Also, the first letter of the column name or table name is also lower case.)\n'; 
+    print "2. Underscore.";  
+    print "\nA sample run of this python file is \n"; 
+    print "\"python mysql_table_to_java_pojo_entity_generator.py -d ~/Desktop/temp/ " \
+        + "-o RulePermission -u root -p P@ssw0rd@123 -l 127.0.0.1 -n ez_pbac " \
+        + "-t ez_profiling_rule_permission -k com.ezdi.pbac.service.ezcac.entities\"\n\n"; 
+    print "The input options are explained below."; 
+    print "-l : The DB Host to connect to."; 
+    print "-u : The DB user to user."; 
+    print "-p : The DB password to be used."; 
+    print "-n : The name of the database to use."; 
+    print "-t : The name of the table in the database whose Java Persistence POJO Entity has to be created."; 
+    print "-o : The Java Class name to be used while creating the Java file."; 
+    print "-d : The directory where the Java file has to be created. " \
+        +"NOTE: Make sure there is a \"/\" suffixed at the end of the path specified."; 
+    print "-k : The package name to be used in the Java file."; 
+    print "-h : Prints out description and usage of this script."; 
 
 def getJavaType(mysqlType):
     if mysqlType.startswith("int"):
@@ -45,8 +70,9 @@ def convertToCamelCase1(str, isFirstLetterUpperCase=False):
     else:
         return str; 
 
-def initialLines(fw):
-    fw.write("import java.util.Date;\n" \
+def initialLines(fw, package):
+    fw.write("package "+package+";\n\n"
+        + "import java.util.Date;\n" \
         + "import javax.persistence.Column;\n" \
         + "import javax.persistence.Entity;\n" \
         + "import javax.persistence.Id;\n" \
@@ -160,7 +186,7 @@ columns = cursor.fetchall();
 
 
 fileWriter = open(outputDir+outputJavaClass+".java", "w+"); 
-initialLines(fileWriter); 
+initialLines(fileWriter, package); 
 initialAnnotationsAndClassName(fileWriter, dbTable, outputJavaClass); 
 addMemberVariables(fileWriter, columns); 
 addGettersAndSetters(fileWriter, columns); 
