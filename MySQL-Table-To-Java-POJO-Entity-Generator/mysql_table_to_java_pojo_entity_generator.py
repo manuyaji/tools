@@ -79,6 +79,8 @@ def initialLines(fw, package):
         + "import javax.persistence.Entity;\n" \
         + "import javax.persistence.Id;\n" \
         + "import javax.persistence.Table;\n" \
+        + "import javax.persistence.GeneratedValue;\n" \
+        + "import javax.persistence.GenerationType;\n" \
     ); 
 
 def initialAnnotationsAndClassName(fw, dbTableName, javaClassName):
@@ -92,6 +94,7 @@ def addMemberVariables(fw, dbTableColumnDescList):
     for col in dbTableColumnDescList:
         if(col[3] == "PRI"):
             fw.write("\n\t@Id"); 
+            fw.write("\n\t@GeneratedValue(strategy=GenerationType.AUTO)"); 
         fw.write("\n\t@Column(name=\""+col[0]+"\")\n"); 
         name = convertToCamelCase(col[0]); 
         varType = getJavaType(col[1]); 
